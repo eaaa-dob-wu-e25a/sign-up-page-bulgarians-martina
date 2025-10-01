@@ -8,12 +8,30 @@ form.addEventListener('submit', getUserInfo(submitEvent));
 
 // This function only runs when the form is submitted
 function getUserInfo(event){
-  event.preventDefault(); // Prevents the page from getting reloaded by the submit call
-  // First task: assign the proper values to these variables
-  const name = document.getElementById("name")
-  const email = document.getElementById("email")
-  const age = document.getElementById("age")
-  validateForm(name, email, age)
+  event.preventDefault();
+  
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const age = document.getElementById("age").value;
+  
+  if (!name || name.length < 2) {
+    errorMessage.textContent = "The name should have more characters";
+    return;
+  }
+  
+  if (!email.includes("@")) {
+    errorMessage.textContent = "This is not email";
+    return;
+  }
+  
+  if (!age || age < 1 || age > 120) {
+    errorMessage.textContent = "The age must be between 1-120";
+    return;
+  }
+  
+  // Ak je všetko OK, pridaj používateľa
+  errorMessage.textContent = "";
+  users.push({name, email, age});
 }
 
 searchInput.addEventListener('input', function() {
