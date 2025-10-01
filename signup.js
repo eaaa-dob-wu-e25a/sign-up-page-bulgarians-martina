@@ -10,9 +10,9 @@ form.addEventListener('submit', getUserInfo(submitEvent));
 function getUserInfo(event){
   event.preventDefault(); // Prevents the page from getting reloaded by the submit call
   // First task: assign the proper values to these variables
-  let name = ???
-  let email = ???
-  let age = ???
+  let name = document.getElementById("name")
+  let email = document.getElementById("email")
+  let age = document.getElementById("age")
   validateForm(name, email, age)
 }
 
